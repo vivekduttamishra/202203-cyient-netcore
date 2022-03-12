@@ -40,37 +40,21 @@ c:\react-native-traing\trainers-work> git clone https://github.com/vivekduttamis
 #### https://gitforwindows.org/
 #### https://git-scm.com/downloads 
 
-## 3. Copy the following files from trainers-work to my-work folder
+## 3. Set up your repository to branch
 
-```cmd
-c:\current-training-name\trainers-work> copy git-*.* ..\my-work
-
-c:\current-training-name\trainers-work> cd ..\my-work
-c:\current-training-name\my-work> git-ignore
-c:\current-training-name\my-work> git-ignore-nodejs
-
-```
-
-
-
-## 4. Create Your own Github repository for the training 
-
-#### Note: 
-
-1. You may need to create an account on github.com
-2. Assuming that your url is  https://github.com/participant01/react-native.git
-
-
-
-## 5. Initalize your repository in my-work folder 
+1. Take a Note of your id given from the trainer
+    * example:  participant01
+2. Clone The Trainer Repository in my-work folder
 
 
 ```cmd
-c:\current-training-name\my-work>git-init your-github-repo-url
-
+c:\current-training-name\my-work> git clone reposiotory-url .
 ```
-## 6. Share the link of your repository in **Partcipant Information Form** that would be shared during the training.
+3. Move to your Branch with your id (example: **participan01**)
 
+```cmd
+c:\current-training-name\my-work> git checkout -b participant01
+```
 
 # Part 2
 
@@ -90,7 +74,7 @@ c:\current-training-name\trainers-work>git pull
 * to upload your content 
 
 ```cmd
-c:\current-training-name\my-work>git-update remark-for-this-update
+c:\current-training-name\my-work>git-update-branch remark-for-this-update
 ```
 
 

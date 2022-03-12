@@ -3,4 +3,4 @@
 git add .
 echo committing: %*
 git commit -m "%*"
-git push -u origin main
+git push -u origin HEAD
