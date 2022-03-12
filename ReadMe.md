@@ -54,6 +54,8 @@ c:\current-training-name\my-work> git clone https://github.com/vivekduttamishra/
 
 ```cmd
 c:\current-training-name\my-work> git checkout -b participant01
+
+c:\current-training-name\my-work> git-update first update
 ```
 
 # Part 2
