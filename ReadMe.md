@@ -28,7 +28,7 @@ c:\>md current-training-name\my-work
 ## 2. Clone Trainer's Repository to trainers-work folder
 
 ```cmd
-c:\react-native-traing\trainers-work> git clone https://github.com/vivekduttamishra/trainer-repo-name .
+c:\react-native-traing\trainers-work> git clone https://github.com/vivekduttamishra/202203-cyient-netcore .
 ```
 
 ### Notes
@@ -48,7 +48,7 @@ c:\react-native-traing\trainers-work> git clone https://github.com/vivekduttamis
 
 
 ```cmd
-c:\current-training-name\my-work> git clone reposiotory-url .
+c:\current-training-name\my-work> git clone https://github.com/vivekduttamishra/202203-cyient-netcore .
 ```
 3. Move to your Branch with your id (example: **participan01**)
 
