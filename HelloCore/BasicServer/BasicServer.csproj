@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\home.html" />
+    <Content Remove="wwwroot\Index.html" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\home.html" />
+    <None Include="wwwroot\Index.html" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@ namespace AsyncAwait
                 Thread.Sleep(100);
             }
 
-            Console.WriteLine("Calculation is over");
+            Console.WriteLine("\nCalculation is over");
             Console.WriteLine("Total Primes "+task.Result);
 
         }

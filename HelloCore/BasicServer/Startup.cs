@@ -22,19 +22,76 @@ namespace BasicServer
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
-            app.Run(new RequestDelegate(SayHello));
+            //Logger Middleware
 
+            app.Use(next => async context =>
+            {
+                //log the request info
+                Console.WriteLine("{0} {1}", context.Request.Method, context.Request.Path);
+
+                //let next middleware do the actual job.
+                await next(context);
+            });
+
+
+
+            app.Use(next => async context =>
+            {
+                if (context.Request.Path == "/time")
+                    await context.Response.WriteAsync(DateTime.Now.ToLongTimeString());
+                else
+                    await next(context);
+
+            });
+
+            app.Use(next => async context =>
+            {
+                if (context.Request.Path == "/welcome")
+                    await context.Response.WriteAsync(string.Format("Welcome {0}, to your web server", context.Request.Query["name"]) );
+                else
+                    await next(context);
+
+            });
+
+            //app.UseDefaultFiles();  //change url to "/index.html" in case it is blank.
+            //app.UseStaticFiles();    //searched for "/" . not fouund
+
+            //above two can be repalced by
+            app.UseFileServer();
+            
+            
+
+
+
+            //for other url's control will reach here.
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello World on " + context.Request.Path);
+            });
 
         }
 
+        private RequestDelegate TimeProvider(RequestDelegate next)
+        {
 
-       
+            //returns what this middleware should do
+            return async context =>
+            {
+                await next(context); //I don't care about this URL. let the next middleware handle this url. 
+                
+
+                if (context.Request.Path.Value.Contains("/time"))
+                    await context.Response.WriteAsync("\n"+DateTime.Now.ToLongTimeString()); //handle this URL
+
+                
+            };           
+
+        }
 
         async Task SayHi(HttpContext context)
         {
-            await context.Response.WriteAsync("Hello World");
-
-            return;
+            await context.Response.WriteAsync("Hi World");
+            
         }
 
 
