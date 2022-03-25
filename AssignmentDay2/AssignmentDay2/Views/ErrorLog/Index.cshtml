@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    var list = RequestCount.GetErrorRequests();
+}
+}
+
+<h1>Index</h1>
+<ul>
+
+    @foreach (var item in list)
+    {
+        <li>404 Error URL:@item.URL </li>
+    }
+</ul>

@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+    var list = RequestCount.GetRequests();
+}
+
+<h1>Index</h1>
+
+<ul>
+
+  @foreach (var item in list)
+  {
+    <li>URL:@item.URL     Count: @item.Count </li>
+  }
+</ul>
+
