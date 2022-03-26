@@ -10,22 +10,17 @@ namespace BasicServer.services
     {
         IFormatterService formatter;
         ILogger<TimedGreetService> logger;
-        public TimedGreetService(IFormatterService formatter,ILogger<TimedGreetService> logger)
+        TimeName time;
+        public TimedGreetService(IFormatterService formatter,ILogger<TimedGreetService> logger,TimeName time)
         {
             this.formatter = formatter;
             this.logger = logger;
+            this.time = time;
         }
 
         public string Greet(string name)
         {
-            var hour = DateTime.Now.Hour;
-            string message = "";
-            if (hour < 12)
-                message = "Morning";
-            else if (hour < 18)
-                message = "After noon";
-            else
-                message = "Evening";
+            var message = time.GetName();
 
             var response=formatter.Format($"Good {message}, {name}");
 

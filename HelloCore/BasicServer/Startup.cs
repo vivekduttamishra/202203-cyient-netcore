@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BasicServer
 {
@@ -23,23 +24,45 @@ namespace BasicServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
+            
             //services is where you configure you back-end classes
             // that will do the "real work"
             // You business logic and basically everything that is not direclty dealing with HTTP.
 
             services.AddSingleton<SimpleGreetService>();
-            services.AddSingleton<IGreetService, TimedGreetService>();
-
+            services.AddSingleton<IGreetService, ConfigurableGreetService3>();
+            services.AddSingleton<TimeName>();
             services.AddSingleton<IFormatterService, UpperCaseFormatter>();
+
+            services.AddSingleton<IAuthenticationService, DummyAuthenticationService>();
+
+            services.AddControllersWithViews();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         {
-            Console.WriteLine("Configure function called");
+
             //Logger Middleware
-         
+
+            logger.LogInformation($"Current Environment: {env.EnvironmentName}");
+
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            } else
+            {
+                app.UseExceptionHandler("/error.html");
+            }
+
+
+            app.UseAuthneticationEndPoints(); //this will give you /login and /logout
+
+
+
 
             app
                 .UseBefore(async context =>
@@ -63,6 +86,25 @@ namespace BasicServer
                 });
 
 
+            app.UseOnUrl("/faulty", async context =>
+            {
+                await Task.Delay(10);
+                throw new Exception("Your secret key has reached usage limit: 393939393");
+            });
+
+
+            //everything below this point should be authorized
+            app.UseAuthenticate();
+
+
+            app.UseOnUrl("/profile", async context =>
+             {
+                 var user = context.Request.Headers["user"];
+                 await context.Response.WriteAsync($"Current User is :{user}");
+             });
+
+
+
             app.UseOnUrl("/greet3", async context =>
             {
                 //get parameter from the request
@@ -84,6 +126,9 @@ namespace BasicServer
 
 
             });
+
+
+
 
 
             app.UseOnUrl("/greet2", async context =>
@@ -112,7 +157,7 @@ namespace BasicServer
                 var service = new SimpleGreetService();
                 //get the data
                 var data = service.Greet(name);
-
+                
                 await context.Response.WriteAsync(data);
             });
 
@@ -132,6 +177,13 @@ namespace BasicServer
             //above two can be repalced by
             app.UseFileServer();
 
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
 
             Console.WriteLine("Reached Beyond UseFileServer");
 
