@@ -2,15 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AssignmentDay2.Models;
+using AssignmentDay3.MiddleWare;
+using AssignmentDay3.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace AssignmentDay2
+namespace AssignmentDay3
 {
     public class Startup
     {
@@ -25,26 +27,35 @@ namespace AssignmentDay2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();
+            services.AddAuthentication();
+
+            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-            
-            app.UseStatusCodePages(async context =>
+            if (env.IsDevelopment())
             {
-                var code = context.HttpContext.Response.StatusCode;
-                if(code==404)
-                {
-                    RequestCount.AddError(context.HttpContext.Request.Path);
-                }
-
-            });
-            app.UsePageRequestMiddleware();
+                app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
+            app.UseSession();
             app.UseStaticFiles();
+            app.UseHttpsRedirection();
+          
+            app.UseMiddleware<AuthenticatedMiddleware>();
+            app.UseMiddleware<postAdminMiddleware>();
+            app.UseMiddleware<productAdminMiddleware>();
+            app.UseMiddleware<UserAdminMiddleware>();
             app.UseRouting();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

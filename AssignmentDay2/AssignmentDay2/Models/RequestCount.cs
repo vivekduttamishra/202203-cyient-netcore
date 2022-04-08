@@ -52,9 +52,9 @@ namespace AssignmentDay2.Models
         }
     }
 
-    public class Requests
-    {
-        public string URL { get; set; }
-        public int Count { get; set; }
-    }
+        public class Requests
+        {
+            public string URL { get; set; }
+            public int Count { get; set; }
+        }
 }
