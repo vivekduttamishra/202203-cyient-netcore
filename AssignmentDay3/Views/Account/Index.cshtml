@@ -6,6 +6,7 @@
 <h1>Login Page</h1>
 <form method="post" asp-controller="account" asp-action="login">
     <table cellpadding="2" cellspacing="2">
+        @ViewBag.error
         <tr>
             <td>UserName</td>
             <td>
