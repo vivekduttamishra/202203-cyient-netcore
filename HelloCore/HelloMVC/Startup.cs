@@ -53,7 +53,7 @@ namespace HelloMVC
             {
                 builder.MapControllerRoute("MvcRoute",
                     "{controller}/{action}/{id}",
-                    new { controller = "Cyient", action = "Home", id = "" }
+                    new { controller = "Cyient", action = "Index", id = "" }
                     );
             });
 

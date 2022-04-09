@@ -1,0 +1,13 @@
+﻿
+
+
+<h2>Time Server - @ViewBag.Title.ToUpper()</h2>
+
+@{ 
+    var date = (DateTime) ViewData["date"] ;
+}
+
+<p>Date is <strong>@date.ToLongDateString()</strong></p>
+
+<p>Time is <strong>@date.ToLongTimeString()</strong></p>
+
