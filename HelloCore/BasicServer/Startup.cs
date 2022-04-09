@@ -94,14 +94,29 @@ namespace BasicServer
 
 
             //everything below this point should be authorized
-            app.UseAuthenticate();
+            //app.UseAuthenticate();
 
 
-            app.UseOnUrl("/profile", async context =>
-             {
-                 var user = context.Request.Headers["user"];
-                 await context.Response.WriteAsync($"Current User is :{user}");
-             });
+            
+
+            app.UseAuthenticate("/profile", async context =>
+            {
+                var user = context.Request.Headers["user"];
+                await context.Response.WriteAsync($"Current User is :{user}");
+            });
+
+
+            app.UseAuthenticate("/protected", async context =>
+            {
+                var user = context.Request.Headers["user"];
+                await context.Response.WriteAsync($"Protected resource for  :{user}");
+            });
+
+            //app.UseOnUrl("/profile", async context =>
+            // {
+            //     var user = context.Request.Headers["user"];
+            //     await context.Response.WriteAsync($"Current User is :{user}");
+            // });
 
 
 

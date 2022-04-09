@@ -46,14 +46,14 @@ namespace BasicServer.services
             if (tokens.ContainsKey(token))
                 return tokens[token]; //email of logged in user
             else
-                return null;
+                return null; //invalid token was passed.
         }
 
         public async Task Logout(string token)
         {
             await Task.Delay(200);
             if (tokens.ContainsKey(token))
-                tokens.Remove(token);
+                tokens.Remove(token); //invalidates the token. deletes it.
         }
 
 

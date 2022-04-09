@@ -31,8 +31,6 @@ namespace BasicServer.services
                     context.Response.StatusCode = 401; //anauthorized
                     await context.Response.WriteAsync("Unauthorized: Invalid username/password");
                 }
-
-
             });
 
 
@@ -106,6 +104,57 @@ namespace BasicServer.services
 
             return app;
         }
+
+        public static IApplicationBuilder UseAuthenticate(this IApplicationBuilder app,string path, RequestDelegate middleware)
+        {
+
+            app.Use(next => async context =>
+            {
+                if (context.Request.Path != path)
+                {
+                    await next(context);
+                    return;
+                }
+
+                var token = context.Request.Headers["Authorization"]; //search for authorize header
+                var service = (IAuthenticationService)context.RequestServices.GetService(typeof(IAuthenticationService));
+
+
+                if (string.IsNullOrEmpty(token))
+                {
+                    context.Response.StatusCode = 401; //aunauthorized
+                    await context.Response.WriteAsync("No token Found");
+                    return;
+                }
+
+                var email = await service.ValidateToken(token);
+                if (string.IsNullOrEmpty(email))
+                {
+                    context.Response.StatusCode = 401;
+                    await context.Response.WriteAsync("Invalid Token");
+                    return;
+                }
+
+                context.Request.Headers["user"] = email; //add extra parameter to user request
+
+                
+
+
+                //let the next middleware work
+                //await next(context);
+                await middleware(context);
+
+
+
+
+
+            });
+
+
+            return app;
+        }
+
+
 
 
     }
