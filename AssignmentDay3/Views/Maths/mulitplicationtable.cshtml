@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "mulitplicationtable";
+    int num = (int)ViewBag.Num;
+    int Count = (int)ViewBag.Count;
+    if (Count == 0)
+    {
+        Count = 10;
+    }
+
+}
+
+<h1>Mulitplication table</h1>
+
+@if (num > 0 && Count > 0)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Multiple</th>
+                <th>Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 1; i <= Count; i++)
+            {
+                <tr>
+                    <td>@num</td>
+                    <td>@i</td>
+                    <td>@(num*i)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
