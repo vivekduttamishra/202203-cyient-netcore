@@ -2,7 +2,7 @@ bin/
 obj/ 
 debug/
 packages/
-lib/
+
 node_modules/
 *.dll 
 *.exe 
