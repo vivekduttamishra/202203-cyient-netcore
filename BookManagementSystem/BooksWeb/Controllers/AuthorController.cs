@@ -35,7 +35,11 @@ namespace BooksWeb.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(Author author)
-        {   
+        {
+            var existing = await service.GetAuthorById(author.Id);
+            if (existing != null)
+                ModelState.AddModelError("Id", "Duplicate Id");
+
             if(ModelState.IsValid)
             {
                 await service.AddAuthor(author);

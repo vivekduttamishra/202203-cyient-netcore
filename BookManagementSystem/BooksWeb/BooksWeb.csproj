@@ -11,7 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ConceptArchitect.BookManagement.Repositories.FlatFileRepository\ConceptArchitect.BookManagement.Repositories.FlatFileRepository.csproj" />
     <ProjectReference Include="..\ConceptArchitect.BookManagement\ConceptArchitect.BookManagement.csproj" />
+    <ProjectReference Include="..\ConceptArchitect.Utils\ConceptArchitect.Utils.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
