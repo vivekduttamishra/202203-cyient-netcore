@@ -1,7 +1,26 @@
 ﻿body {
 }
 
-h1{
+header{
+    border-bottom:2px solid gray;
+    margin-bottom:5px;
+}
+
+header h1{
     font-size:2em;
-    text-shadow:-2px -2px 2px red;
+    text-shadow:-2px -2px 2px gray;
+}
+
+header a{
+    font-weight:bold;
+    color:darkslategrey;
+    text-decoration:none;
+    padding-left:20px;
+
+}
+
+footer{
+    border-top:2px solid gray;
+    margin-top:5px;
+    text-align:center;
 }

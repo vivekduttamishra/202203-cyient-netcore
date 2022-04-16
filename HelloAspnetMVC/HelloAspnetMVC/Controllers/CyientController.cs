@@ -53,13 +53,14 @@ namespace HelloAspnetMVC.Controllers
             };
         }
 
+     
 
         public ContentResult AdminContact()
         {
             var person = new Person() { Name = "Admin", Email = "admin@web.com" };
-            string data = $"<h1>Admin Contact</h1>" +
-                        $"<h2>{person.Name}</h2>" +
-                        $"<h3>{person.Email}</h3";
+            string data =   $"<h1>Admin Contact</h1>" +
+                            $"<h2>{person.Name}</h2>" +
+                            $"<h3>{person.Email}</h3";
 
             return Content(data);
 

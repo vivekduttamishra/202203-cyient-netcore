@@ -2,18 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Hello</title>
+    <title>Cyient Server @RenderSection("Title",false)</title>
     <link href="/App.css" rel="stylesheet" />
 </head>
 <body>
-    <h1>Cyient</h1>
-    <hr />
+    <header>
+        <h1 class="site-title">Cyient</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/">About</a>
+        </nav>
+    </header>
     
-    @RenderBody()
+    <div class="content">
+        @RenderBody()
+    </div>
+    
 
-    <hr />
-    copyright &copy; @ViewData["contact"]
-
+    <footer>
+       @DateTime.Now | &copy; vivek@conceparchitect.in | twitter: @@vivekdmishra
+    </footer>
 </body>
 </html>
 

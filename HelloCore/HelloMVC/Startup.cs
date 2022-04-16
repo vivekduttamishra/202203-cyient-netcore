@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HelloMVC.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,6 +18,8 @@ namespace HelloMVC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<IMultiplicationTableGenerator, MultiplicationTableGenerator>();
+            services.AddTransient<SimpleMath>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,10 +54,18 @@ namespace HelloMVC
             app.UseRouting();
             app.UseEndpoints(builder =>
             {
+
+                builder.MapControllerRoute("MathRoute",
+                   "m/{action}/{number1}/{number2}",
+                   new { controller = "math", action = "Index", number1 = 0, number2 = 0 }
+                   );
+
                 builder.MapControllerRoute("MvcRoute",
                     "{controller}/{action}/{id}",
-                    new { controller = "Cyient", action = "Index", id = "" }
+                    new { controller = "Home", action = "Index", id = "" }
                     );
+
+               
             });
 
         }

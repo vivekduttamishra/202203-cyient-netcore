@@ -1,0 +1,27 @@
+﻿
+@model HelloMVC.Data.MultiplicationTable
+
+
+<h1>Table of @Model.Number [@Model.HightestMultiple times]</h1>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Times</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var info in Model.Result)
+        {
+            <tr>
+                <td>@info.Number1</td>
+                <td>@info.Number2</td>
+                <td>@info.Result</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
