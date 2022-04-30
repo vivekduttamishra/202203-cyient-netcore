@@ -3,19 +3,19 @@ using ConceptArchitect.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ConceptArchitect.BookManagement
+namespace BooksWeb.ViewModels
 {
-    [AuthorAgeRange(MinAge =10, MaxAge =120)]
-    [Serializable]
-    [Table("AuthorTable")]
-    public class Author
+    //New Author View Model
+    public class NewAuthor
     {
+
         [Required]
-        //[UniqueAuthorId] //--> this id is need only during create
+        [UniqueAuthorId] //--> this id is need only during create
         public string Id { get; set; }
-        
+
         [Required]
         public string Name { get; set; }
 
@@ -23,8 +23,8 @@ namespace ConceptArchitect.BookManagement
         public string Photo { get; set; }
 
         [Required]
-        [StringLength(2000,MinimumLength =10)]
-        [WordCount(Min =10, ErrorMessage ="Biography must have at least 10 words")]
+        [StringLength(2000, MinimumLength = 10)]
+        [WordCount(Min = 10, ErrorMessage = "Biography must have at least 10 words")]
         public string Biography { get; set; }
 
         [EmailAddress]
@@ -38,9 +38,6 @@ namespace ConceptArchitect.BookManagement
         [PastDate]
         public DateTime? DeathDate { get; set; } //optional
 
-        public List<Book> Books { get; set; } = new List<Book>();
-
-
-        public string Tags { get; set; }
+       
     }
 }

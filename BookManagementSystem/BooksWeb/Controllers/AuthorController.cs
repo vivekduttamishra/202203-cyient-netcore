@@ -21,6 +21,12 @@ namespace BooksWeb.Controllers
             return View(authors);
         }
 
+        public async Task<IList<Author>> List()
+        {
+            return await service.GetAllAuthors();
+        }
+
+
         public async Task<IActionResult> Details(string id)
         {
             var author = await service.GetAuthorById(id);

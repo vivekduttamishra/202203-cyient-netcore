@@ -32,9 +32,13 @@ namespace ConceptArchitect.BookManagement.Repositories.FlatFileRepository
             return store.Authors.Values.Where(p).ToList();
         }
 
-        public Task<Author> GetById(string id)
+        public async Task<Author> GetById(string id)
         {
-            throw new NotImplementedException();
+            await Task.Yield();
+            if (store.Authors.ContainsKey(id))
+                return store.Authors[id];
+            else
+                return null;
         }
 
         public async Task Remove(string id)

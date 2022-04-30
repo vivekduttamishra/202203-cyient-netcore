@@ -26,6 +26,6 @@ namespace ConceptArchitect.BookManagement
 
         [Required]
         public string Cover { get; set; }
-
+        public string Tags { get; set; }
     }
 }

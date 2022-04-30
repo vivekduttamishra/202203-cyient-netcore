@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Http;
+using BooksWeb.Utils;
+using ConceptArchitect.BookManagement.EFRepository;
+using Microsoft.EntityFrameworkCore;
 
 namespace BooksWeb
 {
@@ -30,6 +34,22 @@ namespace BooksWeb
             services.AddControllersWithViews();
             //services.AddSingleton<IAuthorService, InMemoryAuthorService>();
 
+            // ConfigureFlatFileRepository(services);
+
+
+            services.AddDbContext<BMSContext>(opt =>
+            {
+                opt.UseSqlServer(Configuration.GetConnectionString("BMSContext"));                
+            });
+
+            services.AddTransient<IAuthorRepository, EFAuthorRepository>();
+
+            services.AddTransient<IAuthorService, PersistentAuthorService>();
+            services.AddTransient<BookManagerRecordCreator>();
+        }
+
+        private void ConfigureFlatFileRepository(IServiceCollection services)
+        {
             services.AddSingleton<BookStore>(provider =>
             {
                 var baseDir = Environment.ContentRootPath;
@@ -38,7 +58,6 @@ namespace BooksWeb
             });
 
             services.AddTransient<IAuthorRepository, FlatFileAuthorRepository>();
-            services.AddTransient<IAuthorService, PersistentAuthorService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +73,10 @@ namespace BooksWeb
             }
             app.UseStaticFiles();
 
+
+            app.Use404ForInvalidEntityException();
+            
+
             app.UseRouting();          
 
             app.UseEndpoints(endpoints =>
@@ -61,6 +84,8 @@ namespace BooksWeb
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Author}/{action=Index}/{id?}");
+
+                
             });
         }
     }

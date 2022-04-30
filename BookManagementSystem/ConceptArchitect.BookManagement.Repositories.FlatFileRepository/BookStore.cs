@@ -5,6 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace ConceptArchitect.BookManagement.Repositories.FlatFileRepository
 {
+    
     [Serializable]
     public class BookStore
     {

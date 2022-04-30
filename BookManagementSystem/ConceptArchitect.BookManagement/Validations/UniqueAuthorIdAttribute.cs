@@ -19,12 +19,20 @@ namespace ConceptArchitect.BookManagement.Validations
 
             if (service == null)
                 throw new InvalidOperationException("Required Service IAuthorService not configured");
-
-            var existing = service.GetAuthorById(id).Result; //no async operation
-            if (existing == null)
+            try
+            {
+                var existing = service.GetAuthorById(id).Result; //no async operation
+                return new ValidationResult($"The id {id} is associated with {existing.Name}");
+            }
+            catch
+            {
                 return ValidationResult.Success; //id is not duplicate
+            }
+            
+            
+                
 
-            return new ValidationResult($"The id {id} is associated with {existing.Name}");
+            
         }
     }
 }

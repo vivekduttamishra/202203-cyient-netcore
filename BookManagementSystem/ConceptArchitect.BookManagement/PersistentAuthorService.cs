@@ -26,11 +26,16 @@ namespace ConceptArchitect.BookManagement
 
         public async Task<Author> GetAuthorById(string id)
         {
-            return await repository.GetById(id);
+            var author= await repository.GetById(id);
+            if (author == null)
+                throw new InvalidEntityException("No Such Author", id);
+            else
+                return author;
         }
 
         public async Task Remove(string id)
         {
+            var author = await GetAuthorById(id);
             await repository.Remove(id);
             await repository.Save();
             
@@ -45,6 +50,7 @@ namespace ConceptArchitect.BookManagement
 
         public async Task Update(Author author)
         {
+            var a = await GetAuthorById(author.Id);
             await repository.Update(author, (Author oldAuthor,Author newAuthor) =>
              {
                  oldAuthor.Name = newAuthor.Name;

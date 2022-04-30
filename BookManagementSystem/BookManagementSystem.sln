@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksWeb", "BooksWeb\BooksWeb.csproj", "{26B3A92E-7BE8-477B-9422-36CFFC8CF60B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksWeb", "BooksWeb\BooksWeb.csproj", "{26B3A92E-7BE8-477B-9422-36CFFC8CF60B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptArchitect.BookManagement", "ConceptArchitect.BookManagement\ConceptArchitect.BookManagement.csproj", "{C2826A1D-2C31-4011-99E3-5E5A113715A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConceptArchitect.BookManagement", "ConceptArchitect.BookManagement\ConceptArchitect.BookManagement.csproj", "{C2826A1D-2C31-4011-99E3-5E5A113715A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptArchitect.Utils", "ConceptArchitect.Utils\ConceptArchitect.Utils.csproj", "{A164F87D-8EBD-4120-99CC-21437EDC5713}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConceptArchitect.Utils", "ConceptArchitect.Utils\ConceptArchitect.Utils.csproj", "{A164F87D-8EBD-4120-99CC-21437EDC5713}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptArchitect.BookManagement.Repositories.FlatFileRepository", "ConceptArchitect.BookManagement.Repositories.FlatFileRepository\ConceptArchitect.BookManagement.Repositories.FlatFileRepository.csproj", "{B3BF8DD5-A25B-4925-A920-4BF8763EDEB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConceptArchitect.BookManagement.Repositories.FlatFileRepository", "ConceptArchitect.BookManagement.Repositories.FlatFileRepository\ConceptArchitect.BookManagement.Repositories.FlatFileRepository.csproj", "{B3BF8DD5-A25B-4925-A920-4BF8763EDEB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTest", "SimpleTest\SimpleTest.csproj", "{B2E9185B-A260-45F7-BA73-543F72A9878C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTetProject", "XUnitTetProject\XUnitTetProject.csproj", "{980279A7-1CFC-4560-A4C7-6B769DE5308C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConceptArchitect.BookManagement.EFRepository", "ConceptArchitect.BookManagement.EFRepository\ConceptArchitect.BookManagement.EFRepository.csproj", "{93AC8ED4-D5A3-459D-BA79-5F12CEC9CD3B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{B3BF8DD5-A25B-4925-A920-4BF8763EDEB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3BF8DD5-A25B-4925-A920-4BF8763EDEB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3BF8DD5-A25B-4925-A920-4BF8763EDEB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2E9185B-A260-45F7-BA73-543F72A9878C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E9185B-A260-45F7-BA73-543F72A9878C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2E9185B-A260-45F7-BA73-543F72A9878C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2E9185B-A260-45F7-BA73-543F72A9878C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{980279A7-1CFC-4560-A4C7-6B769DE5308C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{980279A7-1CFC-4560-A4C7-6B769DE5308C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{980279A7-1CFC-4560-A4C7-6B769DE5308C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{980279A7-1CFC-4560-A4C7-6B769DE5308C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93AC8ED4-D5A3-459D-BA79-5F12CEC9CD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93AC8ED4-D5A3-459D-BA79-5F12CEC9CD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93AC8ED4-D5A3-459D-BA79-5F12CEC9CD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93AC8ED4-D5A3-459D-BA79-5F12CEC9CD3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
